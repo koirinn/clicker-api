@@ -10,3 +10,7 @@ class UserRepository:
         user = User(name = name, password = password, email = email)
         self.db.add(user)
         self.db.commit()
+
+    def get_by_email(self, email: str) -> User | None:
+        user = self.db.query(User).filter(User.email == email).one_or_none()
+        return user
